@@ -1,0 +1,259 @@
+Here's the full code (255 lines):
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Story</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0f0f1a;
+      color: #e0e0e0;
+      line-height: 1.7;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    header {
+      text-align: center;
+      padding: 80px 0 60px;
+      border-bottom: 1px solid #2a2a40;
+    }
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      color: #f0c060;
+      text-transform: uppercase;
+    }
+    header p {
+      margin-top: 12px;
+      color: #8888aa;
+      font-size: 1.1rem;
+    }
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid #2a2a40;
+    }
+    section:last-of-type {
+      border-bottom: none;
+    }
+    h2 {
+      font-size: 1.8rem;
+      color: #f0c060;
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    p {
+      font-size: 1.05rem;
+      color: #c0c0d0;
+    }
+    .trailer-box {
+      background: #1a1a2e;
+      border: 2px dashed #3a3a5a;
+      border-radius: 12px;
+      padding: 60px 20px;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #6666aa;
+    }
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      margin-top: 8px;
+    }
+    .character-card {
+      background: #1a1a2e;
+      border-radius: 12px;
+      padding: 0;
+      border: 1px solid #2a2a40;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .character-card:hover {
+      transform: translateY(-4px);
+      border-color: #f0c060;
+      box-shadow: 0 8px 24px rgba(240, 192, 96, 0.08);
+    }
+    .character-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid #2a2a40;
+    }
+    .character-card .card-body {
+      padding: 20px 24px;
+    }
+    .character-card h3 {
+      color: #f0c060;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+    .character-card .role {
+      font-size: 0.85rem;
+      color: #8888aa;
+      margin-bottom: 12px;
+    }
+    .character-card .preview-text {
+      font-size: 0.95rem;
+      color: #a0a0b8;
+    }
+    .character-card .full-details {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #2a2a40;
+      font-size: 0.95rem;
+      color: #a0a0b8;
+    }
+    .character-card .full-details p {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: #a0a0b8;
+    }
+    .character-card .full-details p:last-child {
+      margin-bottom: 0;
+    }
+    .character-card.expanded {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      cursor: default;
+    }
+    .character-card.expanded img {
+      height: 100%;
+      min-height: 340px;
+      border-bottom: none;
+      border-right: 1px solid #2a2a40;
+    }
+    .character-card.expanded .full-details {
+      display: block;
+    }
+    .expand-hint {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: #555570;
+      letter-spacing: 0.5px;
+    }
+    .expand-hint::after {
+      content: " \2192";
+    }
+    .character-card.expanded .expand-hint {
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: #555570;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Echoes of the Forgotten</h1>
+      <p>A journey through time, memory, and the spaces in between.</p>
+    </header>
+
+    <section id="about-author">
+      <h2>About the Author</h2>
+      <p>Jordan Hayes is a storyteller drawn to the edges of reality—where memory blurs, time bends, and the ordinary turns strange. Raised between two continents and never quite at home in either, Jordan writes from the friction of displacement, weaving quiet character studies into speculative worlds. <em>Echoes of the Forgotten</em> is the first book in the <em>Veil Cycle</em> trilogy.</p>
+    </section>
+
+    <section id="preview">
+      <h2>Preview</h2>
+      <p>The last thing Elias remembered was the rain. Not the sound of it, but the <em>shape</em> of it—each drop a needle of static against his skin. When he woke beneath a sky the color of old television static, the world had already begun to forget him.</p>
+      <p style="margin-top: 16px;">In a city where doors lead to places that don't exist on any map, Elias must piece together the fragments of a life he no longer recognizes—and confront the figure waiting at the heart of the labyrinth: a version of himself who never left.</p>
+    </section>
+
+    <section id="trailer">
+      <h2>Trailer</h2>
+      <div class="trailer-box">
+        &#9654; Trailer coming soon
+      </div>
+    </section>
+
+    <section id="main-characters">
+      <h2>Main Characters</h2>
+      <p style="margin-bottom: 24px; font-size: 0.9rem; color: #6666aa;">Click a character to expand</p>
+      <div class="characters">
+        <div class="character-card" onclick="toggleCard(this)">
+          <img src="https://placehold.co/600x400/2a2a40/f0c060?text=Elias+Vane" alt="Elias Vane">
+          <div class="card-body">
+            <h3>Elias Vane</h3>
+            <div class="role">The Lost Cartographer</div>
+            <p class="preview-text">A memory archivist who wakes up in a city that doesn't exist.</p>
+            <div class="full-details">
+              <p><strong>Age:</strong> 34</p>
+              <p><strong>Affiliation:</strong> The Bureau of Forgotten Things (former)</p>
+              <p><strong>Ability:</strong> Stone-sight — can read the emotional history etched into stone and concrete.</p>
+              <p>Elias spent a decade mapping the city's memory layers before he erased his own. Haunted by a daughter he can't remember and a crime he may have committed, he moves through the Veil like a ghost searching for a body.</p>
+            </div>
+            <span class="expand-hint">Click for details</span>
+          </div>
+        </div>
+        <div class="character-card" onclick="toggleCard(this)">
+          <img src="https://placehold.co/600x400/2a2a40/f0c060?text=Sera+Nyx" alt="Sera Nyx">
+          <div class="card-body">
+            <h3>Sera Nyx</h3>
+            <div class="role">The Echo</div>
+            <p class="preview-text">A woman made of static and second chances.</p>
+            <div class="full-details">
+              <p><strong>Age:</strong> Unknown (appears 27)</p>
+              <p><strong>Affiliation:</strong> The Resistance of Glimpses</p>
+              <p><strong>Ability:</strong> Echo-step — can rewind her own timeline by up to eleven seconds, leaving afterimages called "echoes" in her wake.</p>
+              <p>Sera is what happens when a person rewinds too many times: fragmented, fierce, and running out of rewinds. She remembers versions of Elias that he has forgotten—and is desperate to keep him from finding the truth at the center of the maze.</p>
+            </div>
+            <span class="expand-hint">Click for details</span>
+          </div>
+        </div>
+        <div class="character-card" onclick="toggleCard(this)">
+          <img src="https://placehold.co/600x400/2a2a40/f0c060?text=Kael+Orin" alt="Kael Orin">
+          <div class="card-body">
+            <h3>Kael Orin</h3>
+            <div class="role">The Warden of Lost Doors</div>
+            <p class="preview-text">Guardian of the thresholds between worlds.</p>
+            <div class="full-details">
+              <p><strong>Age:</strong> 47</p>
+              <p><strong>Affiliation:</strong> None (formerly The Veil Accord)</p>
+              <p><strong>Ability:</strong> Door-sight — can see every door that ever existed in a place, even ones that have been walled over or forgotten.</p>
+              <p>Kael was the first person Elias met in the In-Between. A cynical survivor with a hidden well of grief, he guides Elias through the city's impossible geography while concealing a devastating secret: he is the one who erased Elias's memory in the first place.</p>
+            </div>
+            <span class="expand-hint">Click for details</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+    function toggleCard(el) {
+      const expanded = document.querySelector('.character-card.expanded');
+      if (expanded && expanded !== el) {
+        expanded.classList.remove('expanded');
+      }
+      el.classList.toggle('expanded');
+    }
+  </script>
+
+  <footer>
+      &copy; 2026 Jordan Hayes &mdash; All rights reserved.
+    </footer>
+  </div>
+</body>
+</html>
+```
